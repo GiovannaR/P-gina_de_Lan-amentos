@@ -32,7 +32,7 @@ public class PessoaResource {
 		return pessoarepository.findAll();
 	}
 	
-	/*@PostMapping
+	@PostMapping
 	@ResponseStatus (HttpStatus.CREATED)	
 	public ResponseEntity<Pessoa> criar (@RequestBody Pessoa pessoa, HttpServletResponse response){
 		
@@ -44,5 +44,5 @@ public class PessoaResource {
 		return ResponseEntity.created(uri).body(pessoasalva);
 		
 		
-	}*/
+	}
 }
