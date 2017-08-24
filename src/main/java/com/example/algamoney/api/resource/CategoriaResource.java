@@ -1,5 +1,6 @@
 package com.example.algamoney.api.resource;
 
+import com.example.algamoney.api.com.example.algamoney.api.event.RecursoEventCriado;
 import com.example.algamoney.api.model.*;
 import com.example.algamoney.api.repository.*;
 
@@ -10,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -21,6 +23,9 @@ public class CategoriaResource {
 	
 	@Autowired
 	private CategoriaRepository categoriaRepository;
+
+	@Autowired
+	private ApplicationEventPublisher publisher;
 	
 	@GetMapping
 	public List<Categoria> listar(){	
@@ -32,12 +37,9 @@ public class CategoriaResource {
 	public ResponseEntity<Categoria> criar(@Valid @RequestBody Categoria categoria, HttpServletResponse response) {
 		
 		Categoria categoriasalva = categoriaRepository.save(categoria);
-		URI uri = ServletUriComponentsBuilder.fromCurrentRequestUri().path("/{codigo}")
-		.buildAndExpand(categoriasalva.getCodigo()).toUri();
+		publisher.publishEvent(new RecursoEventCriado(this, response, categoriasalva.getCodigo()));
 		
-		response.setHeader("Location", uri.toASCIIString());
-		
-		return ResponseEntity.created(uri).body(categoriasalva);
+		return ResponseEntity.status(HttpStatus.CREATED).body(categoriasalva);
 	}
 	
 	@GetMapping("{codigo}")
