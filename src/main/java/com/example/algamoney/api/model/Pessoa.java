@@ -1,12 +1,7 @@
 package com.example.algamoney.api.model;
 
 import javax.persistence.*;
-/*import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
-*/
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.NotNull;
 
 
@@ -24,7 +19,7 @@ public class Pessoa {
 		@Embedded
 		private Endereco endereco;
 		
-		@NotNull
+		@NotNull(message = "O Ativo \\u00e9 obrigat\\u00f3rio;")
 		private boolean ativo;
 
 		public Long getCodigo() {
