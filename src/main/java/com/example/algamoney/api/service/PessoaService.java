@@ -31,4 +31,12 @@ public class PessoaService {
         pessoaSalva.setAtivo(ativo);
         pessoaRepository.save(pessoaSalva);
     }
+
+    public Pessoa buscarPessoapeloCodigo(Long codigo){
+        Pessoa pessoaSalva = pessoaRepository.findOne(codigo);
+        if (pessoaSalva == null){
+            throw new  EmptyResultDataAccessException(1);
+        }
+        return pessoaSalva;
+    }
 }
