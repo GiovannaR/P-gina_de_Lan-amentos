@@ -30,13 +30,12 @@ public class LancamentoResource {
         return lancamentoservice.listar();
     }
 
-    @GetMapping("{codigo}")
+    @GetMapping("/{codigo}")
     public Lancamento buscarpeloCodigo (@PathVariable Long codigo){
         return lancamentoservice.buscar(codigo);
     }
 
     @PostMapping
-    @ResponseStatus (HttpStatus.CREATED)
     public ResponseEntity<Lancamento> salvar (@Valid @RequestBody Lancamento lancamento, HttpServletResponse response){
         Lancamento lancamentosalvo = lancamentoservice.salvarLancamento(lancamento);
 

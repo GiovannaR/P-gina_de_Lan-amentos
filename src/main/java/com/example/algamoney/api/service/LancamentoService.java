@@ -20,16 +20,16 @@ public class LancamentoService {
     }
 
     public Lancamento buscar (long id){
+        System.out.println("um");
         Lancamento lancamento = lancamentoRepository.findOne(id);
 
         if (lancamento == null){
-            new EmptyResultDataAccessException(1);
+            throw new EmptyResultDataAccessException(1);
         }
         return lancamento;
     }
 
     public Lancamento salvarLancamento (Lancamento lancamento){
-        lancamento.setCodigo(null);
         return lancamentoRepository.save(lancamento);
     }
 
