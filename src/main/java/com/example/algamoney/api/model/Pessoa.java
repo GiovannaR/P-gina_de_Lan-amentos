@@ -46,7 +46,7 @@ public class Pessoa {
 		this.endereco = endereco;
 	}
 
-	public boolean isAtivo() {
+	public boolean getAtivo() {
 		return ativo;
 	}
 
