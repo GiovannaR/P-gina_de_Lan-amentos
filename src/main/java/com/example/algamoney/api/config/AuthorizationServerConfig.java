@@ -11,7 +11,8 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.E
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerEndpointsConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerSecurityConfigurer;
 import org.springframework.security.oauth2.provider.token.TokenStore;
-import org.springframework.security.oauth2.provider.token.store.InMemoryTokenStore;
+import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
+import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
 
 @Configuration
 @EnableAuthorizationServer
@@ -29,15 +30,25 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
                 .accessTokenValiditySeconds(1800);
     }
 
+
     @Override
     public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
-            endpoints
-                    .tokenStore(tokenStore())
-                    .authenticationManager(authenticationManager);
+        endpoints
+                .tokenStore(tokenStore1())
+                .accessTokenConverter(accessTokenConverter1())
+                .authenticationManager(authenticationManager);
     }
 
     @Bean
-    public TokenStore tokenStore (){
-        return new InMemoryTokenStore();
+    public JwtAccessTokenConverter accessTokenConverter1() {
+        JwtAccessTokenConverter accessTokenConverter1 = new JwtAccessTokenConverter();
+        accessTokenConverter1.setSigningKey("algaworks");
+        return accessTokenConverter1;
+    }
+
+
+    @Bean
+    public JwtTokenStore tokenStore1 (){
+        return new JwtTokenStore(accessTokenConverter1());
     }
 }
