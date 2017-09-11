@@ -1,4 +1,4 @@
-package com.example.algamoney.api.com.example.algamoney.api.event;
+package com.example.algamoney.api.event;
 
 import org.springframework.context.ApplicationEvent;
 

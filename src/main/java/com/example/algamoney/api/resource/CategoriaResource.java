@@ -1,10 +1,9 @@
 package com.example.algamoney.api.resource;
 
-import com.example.algamoney.api.com.example.algamoney.api.event.RecursoEventCriado;
+import com.example.algamoney.api.event.RecursoEventCriado;
 import com.example.algamoney.api.model.*;
 import com.example.algamoney.api.repository.*;
 
-import java.net.URI;
 import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
@@ -15,7 +14,6 @@ import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 @RestController
 @RequestMapping("/categorias")

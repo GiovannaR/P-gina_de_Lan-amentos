@@ -1,10 +1,9 @@
 package com.example.algamoney.api.resource;
 
-import com.example.algamoney.api.com.example.algamoney.api.event.RecursoEventCriado;
+import com.example.algamoney.api.event.RecursoEventCriado;
 import com.example.algamoney.api.exceptionhandler.Erro;
 import com.example.algamoney.api.model.Lancamento;
 import com.example.algamoney.api.service.LancamentoService;
-import com.example.algamoney.api.service.PessoaService;
 import com.example.algamoney.api.service.exception.PessoaInexistenteOuInativoException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
@@ -17,7 +16,6 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import java.util.Arrays;
-import java.util.Date;
 import java.util.List;
 
 @RestController
