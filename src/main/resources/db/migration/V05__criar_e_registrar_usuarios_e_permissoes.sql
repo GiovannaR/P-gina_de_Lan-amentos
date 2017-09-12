@@ -3,15 +3,10 @@ CREATE TABLE usuario (
   nome VARCHAR(50) NOT NULL,
   email VARCHAR(50) NOT NULL,
   senha VARCHAR(150) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+)  ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE permissao (
   codigo BIGINT(20) PRIMARY KEY,
-  descricao VARCHAR(50) NOT NULL,
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-CREATE TABLE usuario_permissao (
-  codigo BIGINT(20) NOT NULL,
   descricao VARCHAR(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -23,8 +18,9 @@ CREATE TABLE usuario_permissao (
   FOREIGN KEY (codigo_permissao) REFERENCES permissao(codigo)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-INSERT INTO usuario (codigo, nome, email, senha) values (1, 'Administrador', 'admin@algamoney.com', '123fedfs');
-INSERT INTO usuario (codigo, nome, email, senha) values (2, 'Maria Silva', 'maria@algamoney.com', '1dlvjblj2fedfs');
+INSERT INTO usuario (codigo, nome, email, senha) values (1, 'Administrador', 'admin@algamoney.com', '$2a$10$mfBnJlvj4vzDmjg2s/WSRuFCVnyaPf7D5GFSLrdTxBoergaYxaev.
+');
+INSERT INTO usuario (codigo, nome, email, senha) values (2, 'Maria Silva', 'maria@algamoney.com', '1dlvjblj2fedfscbx');
 
 INSERT INTO permissao (codigo, descricao) values (1, 'ROLE_CADASTRAR_CATEGORIA');
 INSERT INTO permissao (codigo, descricao) values (2, 'ROLE_PESQUISAR_CATEGORIA');
