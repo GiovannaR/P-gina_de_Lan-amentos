@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -27,12 +28,14 @@ public class CategoriaResource {
 
 	@CrossOrigin(maxAge = 10, origins = { "http://localhost:8080"})
 	@GetMapping
+	@PreAuthorize("hasAuthority('ROLE_PESQUISAR_CATEGORIA')")
 	public List<Categoria> listar(){	
 		return categoriaRepository.findAll();
 	}
 
 	@PostMapping
-	@ResponseStatus (HttpStatus.CREATED)		
+	@ResponseStatus (HttpStatus.CREATED)
+	@PreAuthorize("hasAuthority('ROLE_PESQUISAR_CATEGORIA')")
 	public ResponseEntity<Categoria> criar(@Valid @RequestBody Categoria categoria, HttpServletResponse response) {
 		
 		Categoria categoriasalva = categoriaRepository.save(categoria);
@@ -42,6 +45,7 @@ public class CategoriaResource {
 	}
 	
 	@GetMapping("{codigo}")
+	@PreAuthorize("hasAuthority('ROLE_PESQUISAR_CATEGORIA')")
 	public Categoria buscarPeloCodigo (@PathVariable Long codigo){
 		return categoriaRepository.findOne(codigo);
 	}

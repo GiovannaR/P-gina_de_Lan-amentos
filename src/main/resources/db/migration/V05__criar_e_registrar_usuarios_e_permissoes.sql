@@ -20,7 +20,7 @@ CREATE TABLE usuario_permissao (
 
 INSERT INTO usuario (codigo, nome, email, senha) values (1, 'Administrador', 'admin@algamoney.com', '$2a$10$mfBnJlvj4vzDmjg2s/WSRuFCVnyaPf7D5GFSLrdTxBoergaYxaev.
 ');
-INSERT INTO usuario (codigo, nome, email, senha) values (2, 'Maria Silva', 'maria@algamoney.com', '1dlvjblj2fedfscbx');
+INSERT INTO usuario (codigo, nome, email, senha) values (2, 'Maria Silva', 'maria@algamoney.com', '$2a$10$Jk9pt9Ym.W1qOP5jAFnAyusFT7hSY3xpAw0mwHnc/Y00G2HyVf.1e');
 
 INSERT INTO permissao (codigo, descricao) values (1, 'ROLE_CADASTRAR_CATEGORIA');
 INSERT INTO permissao (codigo, descricao) values (2, 'ROLE_PESQUISAR_CATEGORIA');
