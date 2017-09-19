@@ -36,6 +36,7 @@ public class CategoriaResource {
 	@PostMapping
 	@ResponseStatus (HttpStatus.CREATED)
 	@PreAuthorize("hasAuthority('ROLE_CADASTRAR_CATEGORIA') and #oauth2.hasScope('write')")
+
 	public ResponseEntity<Categoria> criar(@Valid @RequestBody Categoria categoria, HttpServletResponse response) {
 		
 		Categoria categoriasalva = categoriaRepository.save(categoria);

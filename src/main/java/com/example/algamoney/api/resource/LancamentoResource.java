@@ -11,6 +11,7 @@ import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
@@ -32,16 +33,19 @@ public class LancamentoResource {
     private ApplicationEventPublisher publisher;
 
     @GetMapping
+    @PreAuthorize("hasAuthority('ROLE_PESQUISAR_PESSOA') and #oauth2.hasScope('read')")
     public List<Lancamento> listar (){
         return lancamentoservice.listar();
     }
 
     @GetMapping("/{codigo}")
+    @PreAuthorize("hasAuthority('ROLE_PESQUISAR_PESSOA') and #oauth2.hasScope('read')")
     public Lancamento buscarpeloCodigo (@PathVariable Long codigo){
         return lancamentoservice.buscar(codigo);
     }
 
     @PostMapping
+    @PreAuthorize("hasAuthority('ROLE_CADASTRAR_PESSOA') and #oauth2.hasScope('write')")
     public ResponseEntity<Lancamento> salvar (@Valid @RequestBody Lancamento lancamento, HttpServletResponse response){
         Lancamento lancamentosalvo = lancamentoservice.salvarLancamento(lancamento);
 
@@ -52,6 +56,7 @@ public class LancamentoResource {
     }
 
     @DeleteMapping("/{codigo}")
+    @PreAuthorize("hasAuthority('ROLE_REMOVER_PESSOA') and #oauth2.hasScope('write')")
     public ResponseEntity<Void> deletar (@PathVariable Long codigo){
         lancamentoservice.deletar(codigo);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
