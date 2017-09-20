@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 public class TokenResources {
 
     @DeleteMapping("revoke")
-    public void revoke(HttpServletRequest req, HttpServletResponse resp,){
+    public void revoke(HttpServletRequest req, HttpServletResponse resp){
         Cookie cookie = new Cookie("refreshToken", null);
         cookie.setHttpOnly(true);
         cookie.setSecure(false); //TODO : Em producao sera' null
@@ -22,6 +22,6 @@ public class TokenResources {
         cookie.setMaxAge(0);
 
         resp.addCookie(cookie);
-        resp.setStatus(HttpStatus.NO_CONTENT.value())
+        resp.setStatus(HttpStatus.NO_CONTENT.value());
     }
 }
