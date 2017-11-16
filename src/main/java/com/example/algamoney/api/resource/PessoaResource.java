@@ -37,7 +37,7 @@ public class PessoaResource {
 	public List<Pessoa> listar (){
 		return pessoarepository.findAll();
 	}
-	
+
 	@PostMapping
 	@ResponseStatus (HttpStatus.CREATED)
 	@PreAuthorize("hasAuthority('ROLE_CADASTRAR_LANCAMENTO') and #oauth2.hasScope('write')")

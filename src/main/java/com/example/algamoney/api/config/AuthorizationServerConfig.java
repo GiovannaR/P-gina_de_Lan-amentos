@@ -60,4 +60,7 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
     public JwtTokenStore tokenStore1 (){
         return new JwtTokenStore(accessTokenConverter1());
     }
+
+
+
 }

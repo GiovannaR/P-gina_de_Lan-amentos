@@ -26,7 +26,7 @@ public class CategoriaResource {
 	@Autowired
 	private ApplicationEventPublisher publisher;
 
-	@CrossOrigin(maxAge = 10, origins = { "http://localhost:8080"})
+	@CrossOrigin(maxAge = 10, origins = { "http://localhost:8000"})
 	@GetMapping
 	@PreAuthorize("hasAuthority('ROLE_PESQUISAR_CATEGORIA') and #oauth2.hasScope('read')")
 	public List<Categoria> listar(){	

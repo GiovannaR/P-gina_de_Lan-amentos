@@ -3,12 +3,16 @@ package com.example.algamoney.api.resource;
 import com.example.algamoney.api.event.RecursoEventCriado;
 import com.example.algamoney.api.exceptionhandler.Erro;
 import com.example.algamoney.api.model.Lancamento;
+import com.example.algamoney.api.repository.Filter.LancamentoFilter;
+import com.example.algamoney.api.repository.LancamentoRepository;
 import com.example.algamoney.api.service.LancamentoService;
 import com.example.algamoney.api.service.exception.PessoaInexistenteOuInativoException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -32,10 +36,25 @@ public class LancamentoResource {
     @Autowired
     private ApplicationEventPublisher publisher;
 
-    @GetMapping
+    @Autowired
+    private LancamentoRepository lancamentorepository;
+
+
+   // @GetMapping
+    //Page<Lancamento> lancamentopage (Pageable pageable) {
+     //   return lancamentoservice.listar(pageable);
+    //}
+
+
+    /*@GetMapping
     @PreAuthorize("hasAuthority('ROLE_PESQUISAR_PESSOA') and #oauth2.hasScope('read')")
     public List<Lancamento> listar (){
         return lancamentoservice.listar();
+    }*/
+
+    @GetMapping
+    public Page<Lancamento> pesquisar(LancamentoFilter lancamentoFilter, Pageable page){
+        return (Page<Lancamento>) lancamentorepository.filtrar(lancamentoFilter, page);
     }
 
     @GetMapping("/{codigo}")
