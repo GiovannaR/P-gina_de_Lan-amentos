@@ -54,7 +54,7 @@ public class LancamentoResource {
 
     @GetMapping
     public Page<Lancamento> pesquisar(LancamentoFilter lancamentoFilter, Pageable page){
-        return (Page<Lancamento>) lancamentorepository.filtrar(lancamentoFilter, page);
+        return lancamentorepository.filtrar(lancamentoFilter, page);
     }
 
     @GetMapping("/{codigo}")

@@ -10,6 +10,6 @@ import java.util.List;
 
 public interface LancamentoRepositoryQuery {
 
-    public List<Lancamento> filtrar(LancamentoFilter lancamentoFilter, Pageable page);
-    public Page<ResumoLancamento> resumir(LancamentoFilter lancamentoFilter);
+    public Page<Lancamento> filtrar(LancamentoFilter lancamentoFilter, Pageable page);
+    public Page<ResumoLancamento> resumir(LancamentoFilter lancamentoFilter, Pageable page);
 }
