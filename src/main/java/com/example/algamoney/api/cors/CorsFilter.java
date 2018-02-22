@@ -13,7 +13,7 @@ import java.io.IOException;
 @Order(Ordered.HIGHEST_PRECEDENCE)
 public class CorsFilter implements Filter {
 
-    private String originPermitido = "http://localhost:8000"; //TODO: Configurar para diferentes ambientes
+    private String originPermitido = "http://localhost:4200"; //TODO: Configurar para diferentes ambientes
 
     @Override
     public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain) throws IOException, ServletException {
